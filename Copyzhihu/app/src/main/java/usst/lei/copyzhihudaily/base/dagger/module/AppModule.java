@@ -21,6 +21,7 @@ import okhttp3.Response;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
+import usst.lei.copyzhihudaily.BuildConfig;
 import usst.lei.copyzhihudaily.base.tools.InternetUtil;
 
 /**
@@ -86,7 +87,7 @@ public class AppModule {
             client=new OkHttpClient.Builder().addInterceptor(REWRITE_CACHE_CONTROL_INTERCEPTOR).cache(cache).build();
         }
 
-        return new Retrofit.Builder().baseUrl("http://news-at.zhihu.com/api/4/").client(client)
+        return new Retrofit.Builder().baseUrl(BuildConfig.baseUrl).client(client)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
